@@ -20,11 +20,16 @@ var commentRoutes 		= require("./routes/comments"),
 	
 app.set("view engine", "ejs");
 
-mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true});
-// mongoose.connect('mongodb+srv://adx:yinks2018@cluster0-kwc0k.mongodb.net/test?retryWrites=true&w=majority', {
-// 	useNewUrlParser: true,
-// 	useCreateIndex: true	
-// });
+// WE MASKED THE LOCALHOST DB URL HERE - export DATABASEURL = 'the localhost link' into terminal
+// We also configured config-vars or env var on Heroku
+// This is important to protect app integrity
+mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true}); 
+
+
+// IN ORDER TO SHARE CODE OR SAVE LOCAL URL SHOULD IN CASE IT GOES MISSING, WE CAN DO:
+// var url = process.env.DATABASEURL || "mongodb://localhost/yelp_camp";
+// mongoose.connect(url, { useNewUrlParser: true});
+
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 
@@ -32,6 +37,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(flash());
+app.locals.moment = require("moment");
 // seedDB();
 
 // PASSPORT CONFIGURATION
