@@ -20,13 +20,13 @@ var commentRoutes 		= require("./routes/comments"),
 	
 app.set("view engine", "ejs");
 
-// WE MASKED THE LOCALHOST DB URL HERE - export DATABASEURL = 'mongoDB ATLAS link' into terminal
-// We also configured config-vars or env var on Heroku
+// I MASKED THE LOCALHOST DB URL HERE - export DATABASEURL = 'mongoDB ATLAS link' into terminal
+// I also configured config-vars or env var on Heroku
 // This is important to protect app integrity
 mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true}); 
 
 
-// IN ORDER TO SHARE CODE OR SAVE LOCAL URL SHOULD IN CASE IT GOES MISSING, WE CAN DO:
+// IN ORDER TO SHARE CODE OR SAVE LOCAL URL SHOULD IN CASE IT GOES MISSING, DO:
 // var url = process.env.DATABASEURL || "mongodb://localhost/yelp_camp";
 // mongoose.connect(url, { useNewUrlParser: true});
 
